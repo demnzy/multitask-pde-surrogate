@@ -76,6 +76,20 @@ where $\sigma_m^2(x)$ is the posterior predictive variance at fidelity $m$ and $
 pip install torch gpytorch matplotlib numpy
 ```
 
+### Running the Benchmark CLI
+
+Run the full end-to-end benchmark from the terminal with custom initial configurations and active learning steps:
+
+```bash
+python run_benchmark.py --n-coarse 8 --n-fine 2 --n-active 5 --save-plots
+```
+
+### Running Unit Tests
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 ### Running the Notebook
 
 ```bash
@@ -88,6 +102,14 @@ jupyter notebook "GP Surrogates.ipynb"
 
 ```
 multitask-pde-surrogate/
+├── pde_surrogate/            # Modular Python package
+│   ├── __init__.py           # Package exports
+│   ├── solver.py             # Jacobi 2D heat solver & fidelity benchmark
+│   ├── model.py              # GPyTorch MultiFidelityGP & training routines
+│   └── active_learning.py    # Cost-aware acquisition & query loop
+├── tests/
+│   └── test_surrogate.py     # Unit test suite
+├── run_benchmark.py          # Standalone CLI runner & evaluation
 ├── GP Surrogates.ipynb       # Main research notebook
 ├── figures/
 │   ├── active_learning_progress.png
